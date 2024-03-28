@@ -1,0 +1,16 @@
+4.PROFILLING SEGMENTS
+
+ R> MD.vclust <- hclust(dist(t(MD.x)))
+
+ R> barchart(MD.k4, shade = TRUE,
+ + which = rev(MD.vclust$order))
+
+ R>plot(MD.k4,project=MD.pca,data=MD.x,
+ + hull= FALSE,simlines= FALSE,
+ + xlab= "principalcomponent1",
+ + ylab= "principalcomponent2")
+
+ R>projAxes(MD.pca)
+
+
+

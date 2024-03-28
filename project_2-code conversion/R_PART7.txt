@@ -1,0 +1,22 @@
+6.SELECTING THE TARGET SEGMENTS
+
+ R>visit<-tapply(as.numeric(mcdonalds$VisitFrequency),
+ + k4,mean)
+
+ R>visit
+
+ R>like<-tapply(mcdonalds$Like.n,k4,mean)
+
+ R>like
+
+ R>female<-tapply((mcdonalds$Gender=="Female")+0,
+ + k4,mean)
+
+ R>female
+
+ R> plot(visit, like, cex = 10 * female,
+ + xlim = c(2, 4.5), ylim = c(-3, 3))
+
+ R> text(visit, like, 1:4)
+
+

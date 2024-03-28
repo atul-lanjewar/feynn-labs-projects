@@ -1,0 +1,53 @@
+import pandas as pd
+from sklearn.mixture import LinearRegressionMixture
+from statsmodels.formula.api import ols
+from statsmodels.stats import anova
+import matplotlib.pyplot as plt
+
+# Assuming 'mcdonalds' is your data as a pandas DataFrame
+
+# Reverse frequency table for "Like" (optional)
+print(pd.Series(mcdonalds['Like']).value_counts(normalize=True).sort_index(ascending=False))  # Alternative to rev(table())
+
+# Create new variable "Like.n" (opposite of Like)
+mcdonalds['Like.n'] = 6 - mcdonalds['Like']
+
+# Formula string for the mixture model
+feature_names = mcdonalds.columns[:11]
+formula_string = "Like.n ~ " + "+".join(feature_names)
+
+# Set random seed (for reproducibility)
+np.random.seed(1234)
+
+# Fit Linear Regression Mixture Model (LRMM) with 2 components
+lrmm = LinearRegressionMixture(n_components=2, random_state=1234)
+lrmm.fit(mcdonalds[feature_names], mcdonalds['Like.n'])
+
+# Print model details (replace with specific attributes you want to see)
+print(lrmm.aic_)  # Akaike Information Criterion
+print(lrmm.bic_)  # Bayesian Information Criterion
+
+# Refit the model (optional)
+lrmm_refit = lrmm.refit(mcdonalds[feature_names], mcdonalds['Like.n'])
+
+# Summary of the refitted model (replace with specific summary methods)
+print(lrmm_refit.summary())  # This might require additional libraries depending on your desired summary format
+
+# Plot the model components (might require specific plotting functions from the used library)
+# Assuming lrmm_refit.means_ and lrmm_refit.covariances_ contain necessary information
+# plt.scatter(..., ..., c=lrmm_refit.predict(..))  # Plot data points with component colors
+# ... (plot regression lines for each component)
+# plt.show()
+
+# Test significance of coefficients in each component (optional)
+for i in range(lrmm_refit.n_components):
+  model = ols(formula_string, data=mcdonalds.iloc[lrmm_refit.predict(mcdonalds[feature_names]) == i, :]).fit()
+  print("Component", i+1, "summary:")
+  print(model.summary())
+
+# Compare models using ANOVA (optional)
+if lrmm.n_components > 2:
+  models = [ols(formula_string, data=mcdonalds.iloc[lrmm_refit.predict(mcdonalds[feature_names]) == i, :]).fit() for i in range(lrmm_refit.n_components)]
+  anova_results = anova(*models)
+  print("ANOVA results for comparing models:")
+  print(anova_results)

@@ -1,0 +1,162 @@
+ R> library("MSA")
+ R> data("mcdonalds", package = "MSA")
+ R> names(mcdonalds)
+ R> dim(mcdonalds)
+ R> head(mcdonalds, 3)
+ R> MD.x <- as.matrix(mcdonalds[, 1:11])
+ R> MD.x <- (MD.x == "Yes") + 0
+ R> round(colMeans(MD.x), 2)
+ R> MD.pca <- prcomp(MD.x)
+ R> summary(MD.pca)
+ R> print(MD.pca, digits = 1)
+ R> library("flexclust")
+ R> plot(predict(MD.pca), col = "grey")
+ R> projAxes(MD.pca)
+
+ EXTRACTING SEGMENTS
+ 
+1.USING K-MEANS
+
+ R>set.seed(1234)
+
+ R>MD.km28<-stepFlexclust(MD.x,2:8,nrep=10,
+ + verbose= FALSE)
+
+ R>MD.km28<-relabel(MD.km28)
+
+ R> plot(MD.km28, xlab = "number of segments")
+
+ R> set.seed(1234)
+
+ R> MD.b28 <- bootFlexclust(MD.x, 2:8, nrep = 10,
+ + nboot = 100)
+
+ R> plot(MD.b28, xlab = "number of segments",
+ + ylab = "adjusted Rand index")
+
+ R> histogram(MD.km28[["4"]], data = MD.x, xlim = 0:1)
+
+ R> MD.k4 <- MD.km28[["4"]]
+
+ R> MD.r4 <- slswFlexclust(MD.x, MD.k4)
+
+ R> plot(MD.r4, ylim = 0:1, xlab = "segment number",
+ + ylab = "segment stability")
+
+2.USING MIXTURES OF DISTRIBUTIONS
+
+ R>library("flexmix")
+
+ R>set.seed(1234)
+
+ R>MD.m28<-stepFlexmix(MD.x~ 1,k=2:8,nrep=10,
+ + model=FLXMCmvbinary(),verbose=FALSE)
+
+ R>MD.m28
+
+ R> plot(MD.m28,
+ + ylab = "value of information criteria (AIC, BIC, ICL)")
+
+ R> MD.m4 <- getModel(MD.m28, which = "4")
+
+ R> table(kmeans = clusters(MD.k4),
+ + mixture = clusters(MD.m4))
+
+ R>MD.m4a<-flexmix(MD.x~1,cluster=clusters(MD.k4),
+ + model=FLXMCmvbinary())
+
+ R>table(kmeans=clusters(MD.k4),
+ + mixture= clusters(MD.m4a))
+
+ R>logLik(MD.m4a)
+
+ R>logLik(MD.m4)
+
+3.USING MIXTURES OF REGRESSION MODELS
+
+ R> rev(table(mcdonalds$Like))
+
+ R> mcdonalds$Like.n <- 6- as.numeric(mcdonalds$Like)
+
+ R> table(mcdonalds$Like.n)
+
+ R> f <- paste(names(mcdonalds)[1:11], collapse = "+")
+
+ R> f <- paste("Like.n ~ ", f, collapse = "")
+
+ R> f <- as.formula(f)
+
+ R> f
+
+ R> set.seed(1234)
+
+ R> MD.reg2 <- stepFlexmix(f, data = mcdonalds, k = 2,
+ + nrep = 10, verbose = FALSE)
+
+ R> MD.reg2
+
+ R> MD.ref2 <- refit(MD.reg2)
+
+ R> summary(MD.ref2)
+
+ R> plot(MD.ref2, significance = TRUE)
+
+4.PROFILLING SEGMENTS
+
+ R> MD.vclust <- hclust(dist(t(MD.x)))
+
+ R> barchart(MD.k4, shade = TRUE,
+ + which = rev(MD.vclust$order))
+
+ R>plot(MD.k4,project=MD.pca,data=MD.x,
+ + hull= FALSE,simlines= FALSE,
+ + xlab= "principalcomponent1",
+ + ylab= "principalcomponent2")
+
+ R>projAxes(MD.pca)
+
+5.DESCRIBING SEGMENTS
+
+ R> k4 <- clusters(MD.k4)
+
+ R> mosaicplot(table(k4, mcdonalds$Like), shade = TRUE,
+ + main = "", xlab = "segment number")
+
+ R> mosaicplot(table(k4, mcdonalds$Gender), shade = TRUE)
+
+ R> library("partykit")
+
+ R> tree <- ctree(
+ + factor(k4 == 3) ~ Like.n + Age +
+ + VisitFrequency + Gender,
+ + data = mcdonalds)
+
+ R> plot(tree)
+
+6.SELECTING THE TARGET SEGMENTS
+
+ R>visit<-tapply(as.numeric(mcdonalds$VisitFrequency),
+ + k4,mean)
+
+ R>visit
+
+ R>like<-tapply(mcdonalds$Like.n,k4,mean)
+
+ R>like
+
+ R>female<-tapply((mcdonalds$Gender=="Female")+0,
+ + k4,mean)
+
+ R>female
+
+ R> plot(visit, like, cex = 10 * female,
+ + xlim = c(2, 4.5), ylim = c(-3, 3))
+
+ R> text(visit, like, 1:4)
+
+
+
+
+
+
+

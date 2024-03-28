@@ -1,0 +1,17 @@
+5.DESCRIBING SEGMENTS
+
+ R> k4 <- clusters(MD.k4)
+
+ R> mosaicplot(table(k4, mcdonalds$Like), shade = TRUE,
+ + main = "", xlab = "segment number")
+
+ R> mosaicplot(table(k4, mcdonalds$Gender), shade = TRUE)
+
+ R> library("partykit")
+
+ R> tree <- ctree(
+ + factor(k4 == 3) ~ Like.n + Age +
+ + VisitFrequency + Gender,
+ + data = mcdonalds)
+
+ R> plot(tree)

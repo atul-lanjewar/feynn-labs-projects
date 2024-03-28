@@ -1,0 +1,29 @@
+EXTRACTING SEGMENTS
+ 
+1.USING K-MEANS
+
+ R>set.seed(1234)
+
+ R>MD.km28<-stepFlexclust(MD.x,2:8,nrep=10,
+ + verbose= FALSE)
+
+ R>MD.km28<-relabel(MD.km28)
+
+ R> plot(MD.km28, xlab = "number of segments")
+
+ R> set.seed(1234)
+
+ R> MD.b28 <- bootFlexclust(MD.x, 2:8, nrep = 10,
+ + nboot = 100)
+
+ R> plot(MD.b28, xlab = "number of segments",
+ + ylab = "adjusted Rand index")
+
+ R> histogram(MD.km28[["4"]], data = MD.x, xlim = 0:1)
+
+ R> MD.k4 <- MD.km28[["4"]]
+
+ R> MD.r4 <- slswFlexclust(MD.x, MD.k4)
+
+ R> plot(MD.r4, ylim = 0:1, xlab = "segment number",
+ + ylab = "segment stability")

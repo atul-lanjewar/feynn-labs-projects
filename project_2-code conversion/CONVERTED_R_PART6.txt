@@ -1,0 +1,49 @@
+from pandas import Series, crosstab
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.utils.multiclass import unique_labels
+import matplotlib.pyplot as plt
+
+# Assuming MD.k4 contains the cluster labels (replace k4 with your chosen number)
+# Assuming 'mcdonalds' is your data as a pandas DataFrame
+
+# Cluster and "Like" relationship
+like_table = pd.crosstab(MD.k4, mcdonalds['Like'])
+like_table.plot(kind='bar', stacked=True, colormap='viridis')  # Alternative to mosaicplot
+plt.xlabel('Segment number')
+plt.ylabel('Count')
+plt.title('Distribution of "Like" in Segments')
+plt.legend(title='Like')
+plt.show()
+
+# Cluster and "Gender" relationship
+gender_table = pd.crosstab(MD.k4, mcdonalds['Gender'])
+gender_table.plot(kind='bar', stacked=True, colormap='viridis')  # Alternative to mosaicplot
+plt.xlabel('Segment number')
+plt.ylabel('Count')
+plt.title('Distribution of "Gender" in Segments')
+plt.legend(title='Gender')
+plt.show()
+
+# Decision tree for segment (replace 3 with your chosen segment)
+# Assuming "Like.n" is your transformed "Like" variable
+
+features = ['Like.n', 'Age', 'VisitFrequency', 'Gender']
+X = mcdonalds[features]
+y = (mcdonalds['k4'] == 3).astype(int)  # Encode cluster membership
+
+# Decision tree for predicting membership in segment 3
+tree = DecisionTreeClassifier()
+tree.fit(X, y)
+
+# Plot the decision tree (might require additional libraries for customization)
+plt.figure(figsize=(10, 6))
+tree.plot(filled=True, rounded=True, class_names=['Not Segment 3', 'Segment 3'])
+plt.title('Decision Tree for Segment Classification (Segment 3)')
+plt.show()
+
+# Feature importances (optional)
+if len(unique_labels(y)) > 2:  # Check for multi-class classification
+  importances = tree.feature_importances_
+  feature_names = X.columns
+  for f in range(len(feature_names)):
+    print(f"{feature_names[f]}: {importances[f]:.3f}")

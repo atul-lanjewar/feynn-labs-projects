@@ -1,0 +1,29 @@
+2.USING MIXTURES OF DISTRIBUTIONS
+
+ R>library("flexmix")
+
+ R>set.seed(1234)
+
+ R>MD.m28<-stepFlexmix(MD.x~ 1,k=2:8,nrep=10,
+ + model=FLXMCmvbinary(),verbose=FALSE)
+
+ R>MD.m28
+
+ R> plot(MD.m28,
+ + ylab = "value of information criteria (AIC, BIC, ICL)")
+
+ R> MD.m4 <- getModel(MD.m28, which = "4")
+
+ R> table(kmeans = clusters(MD.k4),
+ + mixture = clusters(MD.m4))
+
+ R>MD.m4a<-flexmix(MD.x~1,cluster=clusters(MD.k4),
+ + model=FLXMCmvbinary())
+
+ R>table(kmeans=clusters(MD.k4),
+ + mixture= clusters(MD.m4a))
+
+ R>logLik(MD.m4a)
+
+ R>logLik(MD.m4)
+

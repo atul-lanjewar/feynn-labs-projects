@@ -1,0 +1,47 @@
+from scipy.cluster.hierarchy import dendrogram, linkage
+from sklearn.preprocessing import StandardScaler
+from matplotlib import pyplot as plt
+
+# Assuming MD_x is your prepared data (numerical)
+# Assuming MD.k4 contains the cluster labels (replace k4 with your chosen number)
+
+# Hierarchical clustering
+scaler = StandardScaler()
+scaled_data = scaler.fit_transform(MD_x)
+distance_matrix = linkage(scaled_data, method='ward')
+
+# Create dendrogram
+plt.figure(figsize=(10, 5))
+dendrogram(distance_matrix, orientation='top', labels=None)
+plt.xlabel('Data points')
+plt.ylabel('Distance')
+plt.title('Hierarchical Clustering Dendrogram')
+plt.show()
+
+# Cluster profiles (using order from dendrogram)
+cluster_order = distance_matrix[:, 0].astype(int)[::-1]  # Reverse order from dendrogram
+print("Cluster profiles (ordered based on dendrogram):")
+for i in range(len(np.unique(MD.k4))):
+  cluster_indices = np.where(MD.k4 == i)[0]
+  cluster_data = MD_x[cluster_indices]
+  # Print descriptive statistics or visualizations of cluster_data here
+  print(f"Cluster {i+1}:")
+  print(cluster_data.describe())  # Example: descriptive statistics
+
+# PCA plot with cluster coloring
+pca = PCA(n_components=2)  # Assuming 2 principal components
+pca_data = pca.fit_transform(MD_x)
+
+plt.figure(figsize=(8, 6))
+for i in range(len(np.unique(MD.k4))):
+  cluster_indices = np.where(MD.k4 == i)[0]
+  plt.scatter(pca_data[cluster_indices, 0], pca_data[cluster_indices, 1], label=f'Cluster {i+1}')
+plt.xlabel('PC1')
+plt.ylabel('PC2')
+plt.title('PCA Plot with Cluster Colors')
+plt.legend()
+plt.show()
+
+# Projecting original axes (optional)
+# This requires the original data points (MD_x) and PCA components (pca.components_)
+# ... (calculate and plot projected axes similar to the R code)

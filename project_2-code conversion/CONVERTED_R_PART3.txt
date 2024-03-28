@@ -1,0 +1,56 @@
+from sklearn.mixture import GaussianMixture
+from sklearn.metrics import silhouette_score
+import matplotlib.pyplot as plt
+
+# Assuming MD_x is your prepared data (numerical)
+
+# Set random seed (for reproducibility)
+np.random.seed(1234)
+
+# Fit Gaussian Mixture Models (GMM) with different component numbers (2 to 8)
+aic, bic, icl = [], [], []
+for n_components in range(2, 9):
+  gmm = GaussianMixture(n_components=n_components, covariance_type='full')
+  gmm.fit(MD_x)
+  aic.append(gmm.aic_)
+  bic.append(gmm.bic_)
+  icl.append(gmm.aicbic_)  # Assuming ICL is a combination of AIC and BIC
+
+# Plot information criteria to determine optimal component number
+plt.plot(range(2, 9), aic, label='AIC')
+plt.plot(range(2, 9), bic, label='BIC')
+plt.plot(range(2, 9), icl, label='ICL')
+plt.xlabel('Number of components')
+plt.ylabel('Information Criteria')
+plt.title('Information Criteria for Gaussian Mixture Models')
+plt.legend()
+plt.show()
+
+# Fit GMM with chosen number of components (replace 4 with your choice)
+gmm = GaussianMixture(n_components=4, covariance_type='full')
+gmm.fit(MD_x)
+gmm_clusters = gmm.predict(MD_x)
+
+# Compare K-means and GMM clustering results (assuming kmeans is your K-means labels)
+print(pd.crosstab(kmeans, gmm_clusters))  # This provides a contingency table
+
+# Fit GMM using K-means labels as initial clusters (optional)
+gmm_init = GaussianMixture(n_components=4, covariance_type='full', init_params='kmeans', random_state=1234)
+gmm_init.fit(MD_x, gmm_clusters)
+gmm_init_clusters = gmm_init.predict(MD_x)
+
+# Compare K-means and GMM clustering results with K-means initialization (optional)
+print(pd.crosstab(kmeans, gmm_init_clusters))  # This provides a contingency table
+
+# Log-likelihood of the GMM models
+log_likelihood_4 = gmm.score_samples(MD_x).sum()
+log_likelihood_init = gmm_init.score_samples(MD_x).sum()
+
+# Print log-likelihoods
+print("Log-likelihood (4 components):", log_likelihood_4)
+print("Log-likelihood (K-means initialization):", log_likelihood_init)
+
+# Silhouette score for GMM clustering (optional)
+# This is another measure of clustering quality
+# silhouette_score_4 = silhouette_score(MD_x, gmm_clusters)
+# print("Silhouette score (4 components):", silhouette_score_4)

@@ -1,0 +1,65 @@
+from sklearn.cluster import KMeans
+from sklearn.metrics import adjusted_rand_score
+from sklearn.cluster import KMeans
+from sklearn.cluster import SpectralClustering
+import matplotlib.pyplot as plt
+
+# Assuming MD_x is your prepared data (numerical)
+
+# Set random seed (for reproducibility)
+np.random.seed(1234)
+
+# K-means with different cluster numbers (2 to 8)
+inertias = []
+for n_clusters in range(2, 9):
+  kmeans = KMeans(n_clusters=n_clusters, random_state=1234)
+  kmeans.fit(MD_x)
+  inertias.append(kmeans.inertia_)
+
+# Plot elbow method to determine optimal cluster number
+plt.plot(range(2, 9), inertias, marker='o')
+plt.xlabel('Number of clusters')
+plt.ylabel('Inertia')
+plt.title('Elbow Method for K-Means')
+plt.show()
+
+# K-means with chosen number of clusters (replace 4 with your choice)
+kmeans = KMeans(n_clusters=4, random_state=1234)
+kmeans.fit(MD_x)
+cluster_labels = kmeans.labels_
+
+# Adjusted Rand Index for different cluster numbers (optional)
+# This requires actual class labels for your data (not shown here)
+# adjusted_rand_scores = []
+# for n_clusters in range(2, 9):
+#   kmeans = KMeans(n_clusters=n_clusters, random_state=1234)
+#   kmeans.fit(MD_x)
+#   y_true = ... (your actual class labels)
+#   adjusted_rand_scores.append(adjusted_rand_score(y_true, kmeans.labels_))
+
+# Plot adjusted Rand Index (replace with your implementation)
+# plt.plot(range(2, 9), adjusted_rand_scores, marker='o')
+# plt.xlabel('Number of clusters')
+# plt.ylabel('Adjusted Rand Index')
+# plt.title('Adjusted Rand Index for K-Means')
+# plt.show()
+
+# Histogram of a cluster (replace '4' with your chosen cluster)
+plt.hist(MD_x[cluster_labels == 3])  # Assuming cluster 4
+plt.xlabel('Feature value')
+plt.ylabel('Frequency')
+plt.title('Histogram of Cluster 4')
+plt.show()
+
+# Perform Spectral Clustering for segment stability (optional)
+# This might not be directly equivalent to slswFlexclust, but provides another approach
+spectral = SpectralClustering(n_clusters=4, random_state=1234, eigen_solver='arpack')
+spectral.fit(MD_x)
+segment_stability = spectral.affinity_matrix_.diagonal()  # This is an example measure
+
+# Plot segment stability (replace with your chosen stability measure)
+plt.plot(range(len(segment_stability)), segment_stability)
+plt.xlabel('Segment number')
+plt.ylabel('Segment stability (affinity)')
+plt.title('Segment Stability from Spectral Clustering')
+plt.show()

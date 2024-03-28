@@ -1,0 +1,25 @@
+import pandas as pd
+from matplotlib import pyplot as plt
+
+# Assuming 'mcdonalds' is your data as a pandas DataFrame
+# Assuming MD.k4 contains the cluster labels (replace k4 with your chosen number)
+
+# Calculate average VisitFrequency, Like.n, and proportion of females per segment
+visit_means = mcdonalds.groupby('k4')['VisitFrequency'].mean()
+like_means = mcdonalds.groupby('k4')['Like.n'].mean()
+female_prop = mcdonalds.groupby('k4')['Gender'].apply(lambda x: (x == 'Female').mean())
+
+# Plot with point size based on female proportion
+plt.figure(figsize=(8, 6))
+plt.scatter(visit_means, like_means, s=100 * female_prop, c='blue', alpha=0.7)
+plt.xlabel('Average Visit Frequency')
+plt.ylabel('Average Like.n')
+plt.title('Segment Analysis (Point size indicates female proportion)')
+plt.xlim(2, 4.5)  # Set x-axis limits
+plt.ylim(-3, 3)  # Set y-axis limits
+plt.show()
+
+# Text labels for segments (optional)
+for i, row in visit_means.to_frame().reset_index().iterrows():
+  plt.text(row['VisitFrequency'], row['Like.n'], str(row['k4'] + 1), ha='center', va='center', fontsize=12)
+plt.show()
