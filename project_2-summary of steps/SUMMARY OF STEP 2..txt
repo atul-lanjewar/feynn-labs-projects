@@ -1,0 +1,22 @@
+SUMMARY OF STEP 2.
+
+2.1 SEGMENT EVALUATION CRITERIA
+The passage discusses the importance of user input in market segmentation analysis and outlines the process of specifying segment evaluation criteria. It emphasizes the need for user involvement throughout the segmentation process, particularly in determining segment evaluation criteria. Two sets of criteria are identified: knock-out criteria, which are essential and non-negotiable features of segments, and attractiveness criteria, which are used to evaluate the relative attractiveness of remaining segments. A selection of proposed criteria from the literature is provided, covering aspects such as market size, growth, profitability, accessibility, and compatibility with company goals. The passage emphasizes the distinction between knock-out and attractiveness criteria and highlights the importance of selecting and prioritizing these criteria for target segment selection.
+
+2.2 AND 2.3
+The section discusses the importance of knock-out criteria in market segmentation analysis and outlines several essential criteria that segments must meet to qualify for further evaluation. These include homogeneity, distinctiveness, size, organizational capability, identifiability, and reachability of the segment. It emphasizes the need for these criteria to be understood by senior management and the segmentation team. Additionally, the section introduces attractiveness criteria, which are used to evaluate the relative desirability of segments. Unlike knock-out criteria, attractiveness criteria are not binary and involve rating each segment's attractiveness across various dimensions. Ultimately, segments are selected as target segments based on their overall attractiveness across all criteria in Step 8 of the segmentation analysis.
+
+2.4 IMPLEMENTING A STRUCTURED PROCESS
+The passage discusses the importance of implementing a structured process for evaluating market segments and selecting target markets. It highlights the use of a segment evaluation plot, which depicts segment attractiveness and organizational competitiveness, as a popular method. The criteria for evaluating attractiveness and competitiveness need to be negotiated and agreed upon by the segmentation team, with input from representatives of all organizational units. This collaborative approach ensures diverse perspectives are considered and increases stakeholder buy-in for the segmentation strategy.
+
+Additionally, the passage emphasizes the importance of early selection of attractiveness criteria, even before specific segments are identified. This helps ensure that relevant information is captured during data collection and facilitates the selection of target segments later in the process. The segmentation team is advised to finalize a list of approximately six attractiveness criteria, assigning weights to each criterion to reflect its importance. This weighting process involves negotiation among team members and may require approval from the advisory committee.
+
+The passage concludes with a checklist summarizing the tasks involved in Step 2 of the segmentation process, including convening a segmentation team meeting, defining knock-out criteria, selecting attractiveness criteria, and assigning weights to them. These tasks are essential for laying the groundwork for effective segmentation analysis and target market selection.
+
+
+
+
+
+
+
+

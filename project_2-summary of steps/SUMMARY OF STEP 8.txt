@@ -1,0 +1,47 @@
+SUMMARY OF STEP 8
+
+1.1 THE TARGETING DECISION
+
+This step of market segmentation involves making the critical decision of selecting one or more target market segments to focus on. This decision significantly impacts the future performance of an organization. After a global market segmentation solution has been chosen, several segments are available for detailed inspection. Knock-out criteria and segment attractiveness criteria, determined in previous steps, help guide this selection process.
+
+The first task in Step 8 is to ensure that all remaining market segments meet the knock-out criteria. Once this is confirmed, the attractiveness of the remaining segments and the organization's competitiveness for these segments are evaluated. Two key questions guide this evaluation:
+
+Which segment(s) does the organization most want to target and commit to?
+Which organizations offering similar products/services would each segment prefer to buy from, and how likely is it that the organization would be chosen? Additionally, how likely is it that each segment would commit to the organization?
+Answering these questions forms the basis of the target segment decision, marking the transition from exploration to commitment in the market segmentation process.
+
+1.2 MARKET SEGMENT EVALUATION
+
+This step of market segmentation involves selecting target segments, often supported by decision matrices like the Boston matrix or General Electric/McKinsey matrix. These matrices visualize segment attractiveness and organizational competitiveness, representing mutual interest and desirability, similar to finding a life partner.
+
+Segment evaluation plots, created typically using software like R, show segment attractiveness to the organization and organizational competitiveness to the segment. Segments are depicted as circles, with sizes indicating factors like profit potential.
+
+Criteria for attractiveness and competitiveness are defined, weighted, and used to rate segments. These ratings are multiplied by weights to calculate overall attractiveness scores. The process helps identify segments aligning with organizational strengths and profitability.
+
+The MSA package in R can be used to recreate segment evaluation plots, using matrices of segment attributes and weights. The goal is to select segments that best fit the organization's objectives and capabilities.
+
+1.3 CHECKLIST OF STEP 8
+
+OUR team is meeting to pick the most promising target markets from the segments you identified earlier. Here's the plan:
+
+1.Refine the List:
+a)Double-check each segment against key criteria (homogeneity, size, etc.).
+b)Eliminate any segments that don't meet the cut.
+
+2.Rate the Segments:
+
+a)Consider how attractive each segment is (market size, growth potential, etc.).
+b)Discuss how well your company can compete in each segment.
+c)Assign scores and weights to these factors for each segment.
+
+3.Visualize the Results:
+
+a)Plot each segment's attractiveness score vs. your competitiveness score.
+
+4.Make a Choice:
+
+a)Based on the scores and discussion, pick a target segment (or a few compatible ones).
+5.Get Approval:
+
+a)Present your choices to an advisory committee for feedback and final approval.
+This process helps you pick target markets with the best potential for success.

@@ -1,0 +1,81 @@
+SUMMARY OF STEP 9
+
+1.1 IMPLICATIONS FOR MARKETTING MIX DECISIONS
+
+Market segmentation doesn't work alone - it influences other marketing decisions like positioning your product against competitors.
+
+Here's the key process:
+
+1.Segmentation: Divide the market into groups (segments) with similar needs.
+2.Targeting: Choose the most promising segment(s) to focus on.
+3.Positioning: Make your product stand out in the target segment's mind.
+This chosen segment affects how you design your marketing mix (product, price, place, promotion) for best results. You might create new products, adjust prices, pick specific stores to sell in, or craft targeted advertising based on what the segment needs.
+
+
+1.2 PRODUCT
+
+This passage explains how product development in marketing mix is driven by customer segmentation. Here's a summary:
+
+1.A key product design decision involves modifying existing products based on customer needs, not necessarily creating entirely new ones.
+2.Other product-related marketing mix choices include naming, packaging, warranties, and after-sales support.
+3.The example focuses on a destination with a rich cultural heritage targeting segment 3 from vacation activity data (imagine Figure 7.37).
+4.Segment 3 enjoys museums, monuments, gardens, scenic walks, and markets (more than average tourists).
+5.To target this segment, the destination could develop a "MUSEUMS, MONUMENTS & MUCH, MUCH MORE" product.
+6.This product (with an activities pass) would help them find these activities during vacation planning.
+7.Another option is to specifically promote the destination's gardens as attractions for segment 3.
+In essence, understanding customer segments through segmentation helps tailor product development and marketing efforts.
+
+1.3 PRICE
+
+This passage discusses using biclustering analysis to identify customer segments and then tailoring the marketing mix to those segments. Here's a summary:
+
+1.A destination is trying to target a specific segment (segment 3) identified through biclustering vacation activity data.
+2.They create a binary variable to indicate if a customer belongs to segment 3.
+3.They analyze spending per person per day for segment 3 vs. other tourists.
+4.Segment 3 spends more, suggesting they are high-value customers.
+5.Based on this finding, the destination can adjust their pricing strategy for segment 3.
+6.The implication is that they might not need discounts and could even consider premium pricing for their "MUSEUMS, MONUMENTS & MUCH, MUCH MORE" product.
+7.In essence, the price dimension of the marketing mix is being customized based on customer segment insights.
+
+1.4 PLACE
+
+This passage explains how to identify the best distribution channels for a product based on customer segments. Here's a breakdown:
+
+1.The key decision for place in the marketing mix is figuring out how to deliver the product to customers. This includes choosing distribution channels like online stores, physical stores, or wholesalers.
+2.Similar to the previous example, the focus is on segment 3 (high spenders) and a destination with cultural attractions.
+3.The analysis considers how members of segment 3 booked accommodation for their last domestic trip (allowing multiple options).
+4.By understanding their booking preferences, the destination can ensure their "MUSEUMS, MONUMENTS & MUCH, MUCH MORE" product is available on those channels.
+5.The passage demonstrates visualizing booking behavior using a propBarchart function.
+6.They analyze online vs. offline booking preferences for hotels specifically.
+7.Figure 11.3 (not shown here) reveals segment 3 uses online booking significantly more than average tourists.
+8.This insight suggests the destination must offer an online booking option for hotels to cater to segment 3.
+9.Ideally, they would gather similar data on booking other products and activities to see if online booking is their preferred method across the board.
+In short, understanding customer segment preferences helps determine the most effective distribution channels for a product.
+
+1.5 PROMOTION
+
+This passage dives into promotion strategies tailored to customer segments. Here's a summary:
+
+1.Key decisions in promotion involve crafting messaging for the target market and choosing how to communicate it effectively. Common promotion tools include advertising, public relations, sales, and sponsorships.
+2.Once again, the focus is on reaching segment 3 (high spenders) to promote the "MUSEUMS, MONUMENTS & MUCH, MUCH MORE" product.
+3.They aim to identify the best information sources to reach this segment.
+4.They analyze two data points: information sources used to choose destinations for their last domestic trip (allowing multiple options) and preferred TV channels.
+5.By understanding these preferences, the destination can tailor their communication channels.
+6.Similar to the previous section, they use propBarchart to visualize information source usage (Figure 11.4, not shown here).
+7.Figure 11.4 reveals segment 3 relies heavily on tourist center information compared to other tourists.
+8.This suggests placing promotional materials about the "MUSEUMS, MONUMENTS & MUCH, MUCH MORE" product in both physical and online tourist center channels.
+9.They also use a mosaic plot (Figure 11.5, not shown here) to analyze TV channel preferences.
+Overall, understanding segment 3's information source and TV channel preferences helps design a targeted promotional strategy to reach them effectively.
+
+1.6 SOME CHECKLISTS
+
+You're meeting to design a marketing mix for a specific customer segment.
+
+1.Review their profile to understand their needs.
+2.Brainstorm how to adjust the product, price, distribution channels, and promotion to target them specifically.
+3.Ensure all these elements (product, price, place, promotion) work together seamlessly.
+4.If targeting multiple groups, repeat for each segment, checking for compatibility between groups.
+5.Prepare a marketing mix outline to present to an advisory committee for feedback.
+
+
+
